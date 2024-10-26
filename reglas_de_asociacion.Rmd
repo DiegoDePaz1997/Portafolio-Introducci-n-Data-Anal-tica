@@ -1,0 +1,28 @@
+```{r}
+library(arules)
+library(Matrix)
+data <- read.csv('c:\\Users\\diego\\Desktop\\db_csv_\\MIGRACION_BDP.csv', sep=',')
+```
+
+```{r}
+data$DEPARTAMENTO <- as.factor(data$DEPARTAMENTO)
+data$MUNICIPIO <- as.factor(data$MUNICIPIO)
+data$COD_MUNICIPIO <- as.factor(data$COD_MUNICIPIO)
+data$ZONA <- as.factor(data$ZONA)
+data$AREA <- as.factor(data$AREA)
+data$NUM_VIVIENDA <- as.factor(data$NUM_VIVIENDA)
+data$NUM_HOGAR <- as.factor(data$NUM_HOGAR)
+data$ID_EMIGRACION <- as.factor(data$ID_EMIGRACION)
+data$PEI3 <- as.factor(data$PEI3)
+data$PEI4 <- as.factor(data$PEI4)
+data$PEI5 <- as.factor(data$PEI5)
+```
+
+```{r}
+reglas <- apriori(data, parameter=list(support=0.15, confidence=0.6))
+```
+
+```{r}
+x <- as(reglas, 'data.frame')
+x
+```
